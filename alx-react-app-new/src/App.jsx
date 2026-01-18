@@ -21,7 +21,7 @@ function App() {
 					age="25"
 					bio="Loves hiking and photography"
 				/>
-        <Counter/>
+				<Counter />
 				<Footer />
 			</div>
 			<p className="read-the-docs">
