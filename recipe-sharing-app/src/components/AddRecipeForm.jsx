@@ -9,7 +9,10 @@ function AddRecipeForm() {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		// if (!title.trim() || !description.trim()) return <p>form cant be empty</p>;
+        if (!title.trim() || !description.trim()) {
+            alert('form cant be empty');
+            return;
+        }
 		addRecipe({ id: Date.now(), title, description });
 		setTitle(" ");
 		setDescription(" ");
