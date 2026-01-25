@@ -1,18 +1,18 @@
 import React from "react";
 import { useState } from "react";
-import useRecipeStore from "../stores/userecipeStore";
+import useRecipeStore from "../stores/recipeStore";
 
 function AddRecipeForm() {
-	const [ title, setTitle ] = useState('');
-	const [ description, setDescription ] = useState('');
+	const [title, setTitle] = useState("");
+	const [description, setDescription] = useState("");
 	const addRecipe = useRecipeStore((state) => state.addRecipe);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		// if (!title.trim() || !description.trim()) return <p>form cant be empty</p>;
-        addRecipe({ id: Date.now(), title, description });
-        setTitle(' ');
-        setDescription(' ');
+		addRecipe({ id: Date.now(), title, description });
+		setTitle(" ");
+		setDescription(" ");
 	};
 	return (
 		<div>
@@ -29,9 +29,9 @@ function AddRecipeForm() {
 					value={description}
 					onChange={(e) => setDescription(e.target.value)}
 					placeholder="description"
-                />
-                
-                <button  type="submit"> Add Recipe</button>
+				/>
+
+				<button type="submit"> Add Recipe</button>
 			</form>
 		</div>
 	);

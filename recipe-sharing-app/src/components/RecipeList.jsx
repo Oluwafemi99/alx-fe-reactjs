@@ -1,9 +1,9 @@
-import React from 'react'
-import useRecipeStore from '../stores/userecipeStore'
+import React from "react";
+import useRecipeStore from "../stores/recipeStore";
 
 function RecipeList() {
-    const recipes = useRecipeStore((state) => state.recipes)
-  return (
+	const recipes = useRecipeStore((state) => state.recipes);
+	return (
 		<div>
 			{recipes.map((recipe) => (
 				<div key={recipe.id}>
@@ -15,4 +15,4 @@ function RecipeList() {
 	);
 }
 
-export default RecipeList
+export default RecipeList;
