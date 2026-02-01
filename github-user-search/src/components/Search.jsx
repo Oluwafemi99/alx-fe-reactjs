@@ -21,7 +21,7 @@ function Search() {
 			setUserdata(data);
 
 		} catch (error) {
-			setError(error, "Something went Wrong");
+			setError(error, "Looks like we cant find the user");
         } finally {
             setLoading(false)
         }
