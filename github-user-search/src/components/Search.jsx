@@ -46,7 +46,7 @@ function Search() {
 
 	return (
 		<div className="min-h-screen flex flex-col items-center p-6 bg-gray-100">
-			<h1 className="text-2xl font-bold mb-6">Github Advanced Search</h1>
+			<h1 className="text-2xl font-bold mb-6">GitHub Advanced Search</h1>
 
 			<form
 				onSubmit={handleSubmit}

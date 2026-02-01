@@ -4,7 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import NewFetch from './components'
-import Search from './components/search'
+import Search from './components/Search'
 
 function App() {
   return (
