@@ -3,14 +3,15 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import NewFetch from './components'
 
 function App() {
   return (
 		<Router>
-			<div>
+      <div>
 				<Routes>
-					<Route></Route>
-				</Routes>
+					<Route path='/' element={<NewFetch/>}></Route>
+        </Routes>
 			</div>
 		</Router>
 	);

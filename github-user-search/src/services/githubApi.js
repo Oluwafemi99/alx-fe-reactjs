@@ -1,10 +1,12 @@
-const GITHUB_API_KEY = import.meta.env.VITE_APP_GITHUB_API_KEY;
+const GITHUB_API_KEY = import.meta.env.VITE_GITHUB_API_KEY;
 
 export const fetchGithubUser = async (username) => {
+	const headers = GITHUB_API_KEY
+		? { Authorization: `Bearer ${GITHUB_API_KEY}` }
+		: {};
+
 	const res = await fetch(`https://api.github.com/users/${username}`, {
-		headers: {
-			Authorization: `Bearer ${GITHUB_API_KEY}`,
-		},
+		headers,
 	});
 
 	return res.json();
