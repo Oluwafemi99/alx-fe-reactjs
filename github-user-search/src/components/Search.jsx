@@ -43,6 +43,7 @@ function Search() {
 					placeholder="Enter Username"
 					onChange={handleChange}
 				></input>
+				<button type="submit">Search</button>
 			</form>
 
 			{loading && <p>Loading...</p>}
