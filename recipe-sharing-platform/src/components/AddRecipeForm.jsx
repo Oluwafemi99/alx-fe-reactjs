@@ -1,153 +1,148 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 function AddRecipeForm() {
-	// State for Form Input
 	const [title, setTitle] = useState("");
 	const [ingredients, setIngredients] = useState("");
-    const [instructions, SetIntructions] = useState("");
-    
-	// State for validation errors
-    const [errors, setErrors] = useState({});
-    
-    const handleSubmit = (e) => {
-			e.preventDefault();
+	const [instructions, setInstructions] = useState("");
+	const [errors, setErrors] = useState({});
 
-			let validationErrors = {};
+	// Validation function
+	const validate = () => {
+		const validationErrors = {};
 
-			if (!title.trim()) {
-				validationErrors.title = "Recipe title is required.";
+		if (!title.trim()) {
+			validationErrors.title = "Recipe title is required.";
+		}
+
+		if (!ingredients.trim()) {
+			validationErrors.ingredients = "Ingredients are required.";
+		} else {
+			const ingredientArray = ingredients
+				.split("\n")
+				.filter((item) => item.trim() !== "");
+			if (ingredientArray.length < 2) {
+				validationErrors.ingredients = "Please enter at least two ingredients.";
 			}
+		}
 
-			if (!ingredients.trim()) {
-				validationErrors.ingredients = "Ingredients are required.";
-            } else {
-                const ingredientArray = ingredients
-									.split("\n")
-									.filter((item) => item.trim() !== "");
-								if (ingredientArray.length < 2) {
-									validationErrors.ingredients =
-										"Please enter at least two ingredients.";
-								}
-        }
-			// Validation 3: Steps must not be empty
-			if (!instructions.trim()) {
-				validationErrors.instructions = "Preparation steps are required.";
-			}
+		if (!instructions.trim()) {
+			validationErrors.instructions = "Preparation steps are required.";
+		}
 
-        if (Object.keys(validationErrors).length > 0) {
-					setErrors(validationErrors);
-				} else {
-					alert("Recipe submitted successfully!");
-					// Clear Form
-					setTitle("");
-					setIngredients("");
-					SetIntructions("");
-					setErrors({});
-				}
-        }
+		return validationErrors;
+	};
 
-      return (
-				<div className="min-h-screen bg-gray-50 flex items-center justify-center px-4 py-10 flex-col">
-					<div className="w-full max-w-2xl bg-white rounded-2xl shadow-lg p-8">
-						<h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
-							Add New Recipe
-						</h1>
+	const handleSubmit = (e) => {
+		e.preventDefault();
 
-						<form
-							onSubmit={handleSubmit}
-							className="space-y-6"
-						>
-							{/* Recipe Title */}
-							<div>
-								<label className="block text-gray-700 font-medium mb-2">
-									Recipe Title
-								</label>
+		const validationErrors = validate();
 
-								<input
-									type="text"
-									value={title}
-									onChange={(e) => setTitle(e.target.value)}
-									className={`w-full border rounded-lg p-3 focus:outline-none focus:ring-2 ${
-										errors.title
-											? "border-red-500 focus:ring-red-300"
-											: "border-gray-300 focus:ring-indigo-300"
-									}`}
-									placeholder="Enter recipe title"
-								/>
+		if (Object.keys(validationErrors).length > 0) {
+			setErrors(validationErrors);
+		} else {
+			alert("Recipe submitted successfully!");
+			// Clear form
+			setTitle("");
+			setIngredients("");
+			setInstructions("");
+			setErrors({});
+		}
+	};
 
-								{errors.title && (
-									<p className="text-red-500 text-sm mt-1">{errors.title}</p>
-								)}
-							</div>
+	return (
+		<div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center px-4 py-10">
+			<div className="w-full max-w-2xl bg-white rounded-2xl shadow-lg p-8">
+				<h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
+					Add New Recipe
+				</h1>
 
-							{/* Ingredients */}
-							<div>
-								<label className="block text-gray-700 font-medium mb-2">
-									Ingredients (one per line)
-								</label>
-
-								<textarea
-									value={ingredients}
-									onChange={(e) => setIngredients(e.target.value)}
-									rows="5"
-									className={`w-full border rounded-lg p-3 focus:outline-none focus:ring-2 ${
-										errors.ingredients
-											? "border-red-500 focus:ring-red-300"
-											: "border-gray-300 focus:ring-indigo-300"
-									}`}
-									placeholder="Enter each ingredient on a new line"
-								/>
-
-								{errors.ingredients && (
-									<p className="text-red-500 text-sm mt-1">
-										{errors.ingredients}
-									</p>
-								)}
-							</div>
-
-							{/* Preparation Steps */}
-							<div>
-								<label className="block text-gray-700 font-medium mb-2">
-									Preparation Steps (one per line)
-								</label>
-
-								<textarea
-									value={instructions}
-									onChange={(e) => SetIntructions(e.target.value)}
-									rows="6"
-									className={`w-full border rounded-lg p-3 focus:outline-none focus:ring-2 ${
-										errors.instructions
-											? "border-red-500 focus:ring-red-300"
-											: "border-gray-300 focus:ring-indigo-300"
-									}`}
-									placeholder="Enter each step on a new line"
-								/>
-
-								{errors.instructions && (
-									<p className="text-red-500 text-sm mt-1">
-										{errors.instructions}
-									</p>
-								)}
-							</div>
-
-							{/* Submit Button */}
-							<button
-								type="submit"
-								className="w-full bg-indigo-500 text-white py-3 rounded-lg font-semibold hover:bg-indigo-600 transition duration-300"
-							>
-								Submit Recipe
-							</button>
-						</form>
+				<form
+					onSubmit={handleSubmit}
+					className="space-y-6"
+				>
+					{/* Recipe Title */}
+					<div>
+						<label className="block text-gray-700 font-medium mb-2">
+							Recipe Title
+						</label>
+						<input
+							type="text"
+							value={title}
+							onChange={(e) => setTitle(e.target.value)}
+							className={`w-full border rounded-lg p-3 focus:outline-none focus:ring-2 ${
+								errors.title
+									? "border-red-500 focus:ring-red-300"
+									: "border-gray-300 focus:ring-indigo-300"
+							}`}
+							placeholder="Enter recipe title"
+						/>
+						{errors.title && (
+							<p className="text-red-500 text-sm mt-1">{errors.title}</p>
+						)}
 					</div>
-					<Link
-						to="/"
-						className="text-indigo-600 font-medium hover:underline mt-6"
+
+					{/* Ingredients */}
+					<div>
+						<label className="block text-gray-700 font-medium mb-2">
+							Ingredients (one per line)
+						</label>
+						<textarea
+							value={ingredients}
+							onChange={(e) => setIngredients(e.target.value)}
+							rows="5"
+							className={`w-full border rounded-lg p-3 focus:outline-none focus:ring-2 ${
+								errors.ingredients
+									? "border-red-500 focus:ring-red-300"
+									: "border-gray-300 focus:ring-indigo-300"
+							}`}
+							placeholder="Enter each ingredient on a new line"
+						/>
+						{errors.ingredients && (
+							<p className="text-red-500 text-sm mt-1">{errors.ingredients}</p>
+						)}
+					</div>
+
+					{/* Instructions */}
+					<div>
+						<label className="block text-gray-700 font-medium mb-2">
+							Preparation Steps (one per line)
+						</label>
+						<textarea
+							value={instructions}
+							onChange={(e) => setInstructions(e.target.value)}
+							rows="6"
+							className={`w-full border rounded-lg p-3 focus:outline-none focus:ring-2 ${
+								errors.instructions
+									? "border-red-500 focus:ring-red-300"
+									: "border-gray-300 focus:ring-indigo-300"
+							}`}
+							placeholder="Enter each step on a new line"
+						/>
+						{errors.instructions && (
+							<p className="text-red-500 text-sm mt-1">{errors.instructions}</p>
+						)}
+					</div>
+
+					{/* Submit Button */}
+					<button
+						type="submit"
+						className="w-full bg-indigo-500 text-white py-3 rounded-lg font-semibold hover:bg-indigo-600 transition duration-300"
 					>
-						← Back to Home
-					</Link>
-				</div>
-			);
+						Submit Recipe
+					</button>
+				</form>
+			</div>
+
+			{/* Back Link below the form */}
+			<Link
+				to="/"
+				className="text-indigo-600 font-medium hover:underline mt-6"
+			>
+				← Back to Home
+			</Link>
+		</div>
+	);
 }
 
-export default AddRecipeForm
+export default AddRecipeForm;
