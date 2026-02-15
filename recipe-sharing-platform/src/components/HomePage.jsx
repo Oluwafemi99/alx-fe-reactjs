@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import recipesData from "../data.json";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
 	const [recipes, setRecipes] = useState([]);
@@ -29,9 +30,9 @@ const HomePage = () => {
         "
 			>
 				{recipes.map((recipe) => (
-					<div
-						key={recipe.id}
-						className="
+					<Link to={`/recipe/${recipe.id}`} key={recipe.id}>
+						<div
+							className="
               bg-white 
               rounded-2xl 
               shadow-md 
@@ -42,27 +43,27 @@ const HomePage = () => {
               hover:shadow-2xl 
               hover:scale-105
             "
-					>
-						{/* Recipe Image */}
-						<img
-							src={recipe.image}
-							alt={recipe.title}
-							className="w-full h-52 object-cover"
-						/>
+						>
+							{/* Recipe Image */}
+							<img
+								src={recipe.image}
+								alt={recipe.title}
+								className="w-full h-52 object-cover"
+							/>
 
-						{/* Card Content */}
-						<div className="p-5">
-							<h2 className="text-xl font-semibold text-gray-800 mb-2">
-								{recipe.title}
-							</h2>
+							{/* Card Content */}
+							<div className="p-5">
+								<h2 className="text-xl font-semibold text-gray-800 mb-2">
+									{recipe.title}
+								</h2>
 
-							<p className="text-gray-600 text-sm leading-relaxed">
-								{recipe.summary}
-							</p>
+								<p className="text-gray-600 text-sm leading-relaxed">
+									{recipe.summary}
+								</p>
 
-							{/* Optional Button for better UI */}
-							<button
-								className="
+								{/* Optional Button for better UI */}
+								<button
+									className="
                   mt-4 
                   w-full 
                   bg-indigo-500 
@@ -74,11 +75,12 @@ const HomePage = () => {
                   duration-300
                   hover:bg-indigo-600
                 "
-							>
-								View Recipe
-							</button>
+								>
+									View Recipe
+								</button>
+							</div>
 						</div>
-					</div>
+					</Link>
 				))}
 			</div>
 		</div>
