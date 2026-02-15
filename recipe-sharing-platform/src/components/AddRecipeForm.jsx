@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 
 function AddRecipeForm() {
 	// State for Form Input
@@ -7,7 +8,7 @@ function AddRecipeForm() {
     const [instructions, SetIntructions] = useState("");
     
 	// State for validation errors
-    const [errors, setError] = useState({});
+    const [errors, setErrors] = useState({});
     
     const handleSubmit = (e) => {
 			e.preventDefault();
@@ -35,19 +36,19 @@ function AddRecipeForm() {
 			}
 
         if (Object.keys(validationErrors).length > 0) {
-					setError(validationErrors);
+					setErrors(validationErrors);
 				} else {
 					alert("Recipe submitted successfully!");
 					// Clear Form
 					setTitle("");
 					setIngredients("");
 					SetIntructions("");
-					setError({});
+					setErrors({});
 				}
         }
 
       return (
-				<div className="min-h-screen bg-gray-50 flex items-center justify-center px-4 py-10">
+				<div className="min-h-screen bg-gray-50 flex items-center justify-center px-4 py-10 flex-col">
 					<div className="w-full max-w-2xl bg-white rounded-2xl shadow-lg p-8">
 						<h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
 							Add New Recipe
@@ -116,15 +117,17 @@ function AddRecipeForm() {
 									onChange={(e) => SetIntructions(e.target.value)}
 									rows="6"
 									className={`w-full border rounded-lg p-3 focus:outline-none focus:ring-2 ${
-										errors.steps
+										errors.instructions
 											? "border-red-500 focus:ring-red-300"
 											: "border-gray-300 focus:ring-indigo-300"
 									}`}
 									placeholder="Enter each step on a new line"
 								/>
 
-								{errors.steps && (
-									<p className="text-red-500 text-sm mt-1">{errors.steps}</p>
+								{errors.instructions && (
+									<p className="text-red-500 text-sm mt-1">
+										{errors.instructions}
+									</p>
 								)}
 							</div>
 
@@ -137,6 +140,12 @@ function AddRecipeForm() {
 							</button>
 						</form>
 					</div>
+					<Link
+						to="/"
+						className="text-indigo-600 font-medium hover:underline mt-6"
+					>
+						← Back to Home
+					</Link>
 				</div>
 			);
 }
