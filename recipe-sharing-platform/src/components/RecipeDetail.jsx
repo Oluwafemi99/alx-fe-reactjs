@@ -36,7 +36,7 @@ const RecipeDetail = () => {
 				<img
 					src={recipe.image}
 					alt={recipe.title}
-					className="w-full max-h-100px object-cover rounded-2xl shadow-lg"
+					className="w-full max-h-[400px] object-cover rounded-2xl shadow-lg"
 				/>
 			</div>
 
@@ -54,7 +54,7 @@ const RecipeDetail = () => {
 					</h2>
 
 					<ul className="list-disc list-inside space-y-2 text-gray-700">
-						{recipe.ingredients.map((ingredient, index) => (
+						{recipe.ingredients?.map((ingredient, index) => (
 							<li key={index}>{ingredient}</li>
 						))}
 					</ul>
@@ -67,7 +67,7 @@ const RecipeDetail = () => {
 					</h2>
 
 					<ol className="list-decimal list-inside space-y-3 text-gray-700">
-						{recipe.instructions.map((step, index) => (
+						{recipe.instructions?.map((step, index) => (
 							<li key={index}>{step}</li>
 						))}
 					</ol>

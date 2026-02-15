@@ -17,6 +17,14 @@ const HomePage = () => {
 			<h1 className="text-4xl font-bold text-center text-gray-800 mb-12">
 				🍽️ Recipe Collection
 			</h1>
+			<div className="flex justify-end mb-6">
+				<Link
+					to="/add"
+					className="bg-indigo-400 text-white px-4 py-2 rounded-lg hover:bg-indigo-600 transition"
+				>
+					+ Add Recipe
+				</Link>
+			</div>
 
 			{/* Responsive Grid Layout */}
 			<div
@@ -30,7 +38,10 @@ const HomePage = () => {
         "
 			>
 				{recipes.map((recipe) => (
-					<Link to={`/recipe/${recipe.id}`} key={recipe.id}>
+					<Link
+						to={`/recipe/${recipe.id}`}
+						key={recipe.id}
+					>
 						<div
 							className="
               bg-white 
