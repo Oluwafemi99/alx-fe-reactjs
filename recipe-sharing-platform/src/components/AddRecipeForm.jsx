@@ -51,8 +51,8 @@ function AddRecipeForm() {
 	};
 
 	return (
-		<div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center px-4 py-10">
-			<div className="w-full max-w-2xl bg-white rounded-2xl shadow-lg p-8">
+		<div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center px-4 py-10 md:py-20">
+			<div className="w-full max-w-md md:max-w-2xl bg-white rounded-2xl shadow-lg p-6 md:p-8">
 				<h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
 					Add New Recipe
 				</h1>
@@ -137,7 +137,7 @@ function AddRecipeForm() {
 			{/* Back Link below the form */}
 			<Link
 				to="/"
-				className="text-indigo-600 font-medium hover:underline mt-6"
+				className="text-indigo-600 font-medium hover:underline mt-4 md:mt-6"
 			>
 				← Back to Home
 			</Link>
