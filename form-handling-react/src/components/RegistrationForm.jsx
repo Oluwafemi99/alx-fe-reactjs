@@ -11,7 +11,6 @@ function RegistrationForm() {
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
-
 		setFormData({
 			...formData,
 			[name]: value,
@@ -20,27 +19,15 @@ function RegistrationForm() {
 
 	const validate = () => {
 		const newErrors = {};
-
-		if (!formData.username.trim()) {
-			newErrors.username = "Username is required";
-		}
-
-		if (!formData.email.trim()) {
-			newErrors.email = "Email is required";
-		}
-
-		if (!formData.password.trim()) {
-			newErrors.password = "Password is required";
-		}
-
+		if (!formData.username.trim()) newErrors.username = "Username is required";
+		if (!formData.email.trim()) newErrors.email = "Email is required";
+		if (!formData.password.trim()) newErrors.password = "Password is required";
 		return newErrors;
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-
 		const validationErrors = validate();
-
 		if (Object.keys(validationErrors).length > 0) {
 			setErrors(validationErrors);
 		} else {
@@ -49,6 +36,9 @@ function RegistrationForm() {
 			alert("Registration Successful!");
 		}
 	};
+
+	// Destructure for cleaner JSX
+	const { username, email, password } = formData;
 
 	return (
 		<form onSubmit={handleSubmit}>
@@ -59,21 +49,7 @@ function RegistrationForm() {
 				<input
 					type="text"
 					name="username"
-					value={formData.username} // ✅ controlled value
-					onChange={handleChange}
-				/>
-
-				<input
-					type="email"
-					name="email"
-					value={formData.email} // ✅ controlled value
-					onChange={handleChange}
-				/>
-
-				<input
-					type="password"
-					name="password"
-					value={formData.password} // ✅ controlled value
+					value={username} // ✅ controlled
 					onChange={handleChange}
 				/>
 				{errors.username && <p style={{ color: "red" }}>{errors.username}</p>}
@@ -84,7 +60,7 @@ function RegistrationForm() {
 				<input
 					type="email"
 					name="email"
-					value={formData.email}
+					value={email} // ✅ controlled
 					onChange={handleChange}
 				/>
 				{errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
@@ -95,7 +71,7 @@ function RegistrationForm() {
 				<input
 					type="password"
 					name="password"
-					value={formData.password}
+					value={password} // ✅ controlled
 					onChange={handleChange}
 				/>
 				{errors.password && <p style={{ color: "red" }}>{errors.password}</p>}
