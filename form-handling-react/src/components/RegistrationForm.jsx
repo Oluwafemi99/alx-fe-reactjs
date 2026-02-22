@@ -19,11 +19,22 @@ function RegistrationForm() {
 
 	const validate = () => {
 		const newErrors = {};
-		const { username, email, password } = formData; // destructure for validation
 
-		if (!username.trim()) newErrors.username = "Username is required";
-		if (!email.trim()) newErrors.email = "Email is required";
-		if (!password.trim()) newErrors.password = "Password is required";
+		// Destructure form data for validation
+		const { username, email, password } = formData;
+
+		// Explicit individual checks
+		if (!username.trim()) {
+			newErrors.username = "Username is required";
+		}
+
+		if (!email.trim()) {
+			newErrors.email = "Email is required";
+		}
+
+		if (!password.trim()) {
+			newErrors.password = "Password is required";
+		}
 
 		return newErrors;
 	};
@@ -31,6 +42,7 @@ function RegistrationForm() {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		const validationErrors = validate();
+
 		if (Object.keys(validationErrors).length > 0) {
 			setErrors(validationErrors);
 		} else {
@@ -40,7 +52,8 @@ function RegistrationForm() {
 		}
 	};
 
-	const { username, email, password } = formData; // destructure for JSX
+	// Destructure for JSX binding
+	const { username, email, password } = formData;
 
 	return (
 		<form onSubmit={handleSubmit}>
