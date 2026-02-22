@@ -25,6 +25,7 @@ function App() {
 					path="/"
 					element={<Home />}
 				/>
+
 				<Route
 					path="/login"
 					element={<Login onLogin={handleLogin} />}
