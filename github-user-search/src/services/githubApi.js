@@ -1,4 +1,4 @@
-const GITHUB_API_KEY = import.meta.env.VITE_GITHUB_API_KEY;
+// const GITHUB_API_KEY = import.meta.env.VITE_GITHUB_API_KEY;
 
 // export const fetchGithubUser = async (username) => {
 // 	const headers = GITHUB_API_KEY
