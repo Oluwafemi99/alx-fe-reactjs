@@ -59,7 +59,21 @@ function RegistrationForm() {
 				<input
 					type="text"
 					name="username"
-					value={formData.username}
+					value={formData.username} // ✅ controlled value
+					onChange={handleChange}
+				/>
+
+				<input
+					type="email"
+					name="email"
+					value={formData.email} // ✅ controlled value
+					onChange={handleChange}
+				/>
+
+				<input
+					type="password"
+					name="password"
+					value={formData.password} // ✅ controlled value
 					onChange={handleChange}
 				/>
 				{errors.username && <p style={{ color: "red" }}>{errors.username}</p>}
