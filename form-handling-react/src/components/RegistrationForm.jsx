@@ -19,9 +19,12 @@ function RegistrationForm() {
 
 	const validate = () => {
 		const newErrors = {};
-		if (!formData.username.trim()) newErrors.username = "Username is required";
-		if (!formData.email.trim()) newErrors.email = "Email is required";
-		if (!formData.password.trim()) newErrors.password = "Password is required";
+		const { username, email, password } = formData; // destructure for validation
+
+		if (!username.trim()) newErrors.username = "Username is required";
+		if (!email.trim()) newErrors.email = "Email is required";
+		if (!password.trim()) newErrors.password = "Password is required";
+
 		return newErrors;
 	};
 
@@ -37,8 +40,7 @@ function RegistrationForm() {
 		}
 	};
 
-	// Destructure for cleaner JSX
-	const { username, email, password } = formData;
+	const { username, email, password } = formData; // destructure for JSX
 
 	return (
 		<form onSubmit={handleSubmit}>
@@ -49,7 +51,7 @@ function RegistrationForm() {
 				<input
 					type="text"
 					name="username"
-					value={username} // ✅ controlled
+					value={username}
 					onChange={handleChange}
 				/>
 				{errors.username && <p style={{ color: "red" }}>{errors.username}</p>}
@@ -60,7 +62,7 @@ function RegistrationForm() {
 				<input
 					type="email"
 					name="email"
-					value={email} // ✅ controlled
+					value={email}
 					onChange={handleChange}
 				/>
 				{errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
@@ -71,7 +73,7 @@ function RegistrationForm() {
 				<input
 					type="password"
 					name="password"
-					value={password} // ✅ controlled
+					value={password}
 					onChange={handleChange}
 				/>
 				{errors.password && <p style={{ color: "red" }}>{errors.password}</p>}
